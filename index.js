@@ -1,17 +1,14 @@
-function serialize(root) {
-  const result = [];
-  const queue = [root];
-  while (queue.length) {
-    const node = queue.shift();
-    if (node) {
-      result.push(node.val);
-      queue.push(node.left, node.right);
-    } else {
-      result.push(null);
+function connect(root) {
+  if (!root) return root;
+  let levelStart = root;
+  while (levelStart) {
+    let curr = levelStart;
+    while (curr) {
+      if (curr.left) curr.left.next = curr.right;
+      if (curr.right && curr.next) curr.right.next = curr.next.left;
+      curr = curr.next;
     }
+    levelStart = levelStart.left;
   }
-  while (result[result.length - 1] === null) {
-    result.pop();
-  }
-  return result;
+  return root;
 }
