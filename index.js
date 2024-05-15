@@ -1,3 +1,6 @@
-function averageArray(arr) {
-  return arr.reduce((acc, curr) => acc + curr, 0) / arr.length;
-}
+const gcdRecursive = (a, b) => {
+  if (b === 0) {
+    return a;
+  }
+  return gcdRecursive(b, a % b);
+};
